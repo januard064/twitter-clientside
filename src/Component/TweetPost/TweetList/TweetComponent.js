@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {Avatar, TextareaAutosize, Box, Grid, ButtonGroup, Button,List, ListItem, ListItemText, Popper, Fade, Typography, Paper} from '@material-ui/core';
+import {Avatar, Box, Grid,List, ListItem, ListItemText, Popper, Fade, Paper} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import RepeatIcon from '@material-ui/icons/Repeat';
@@ -59,17 +59,6 @@ const TweetComponent = ({tweets, deleteTweet, updateTweet, closeModal}) => {
             color:'#62717d',
             marginLeft:10
         },
-        action:{
-            position:"absolute",
-            borderColor:'white',
-            width:200,
-            height:50,
-            marginTop:20,
-            // padding:10,
-            marginLeft:200,
-            backgroundColor:'white'
-           
-        },
         actiontext:{
             marginTop:-2,
             fontSize:10,
@@ -95,8 +84,6 @@ const TweetComponent = ({tweets, deleteTweet, updateTweet, closeModal}) => {
 
     const classes = useStyles();
 
-    const[tampil, setTampil] = useState(false);
-    
 
     const setUpdateTweet = (tweets) => {
         updateTweet(tweets)
@@ -112,7 +99,7 @@ const TweetComponent = ({tweets, deleteTweet, updateTweet, closeModal}) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(false);
-    const [placement, setPlacement] = React.useState();
+    const [placement, setPlacement] = useState();
 
     const handleClick = (newPlacement) => (event) => {
         setAnchorEl(event.currentTarget);
@@ -125,19 +112,7 @@ const TweetComponent = ({tweets, deleteTweet, updateTweet, closeModal}) => {
             <Grid container className={classes.content} >
                 <Grid item xs={2} sm={1} md={1} lg={1} xl={1} > <Avatar alt="image profile" src="/assets/images/profile.jpg" className={classes.profile} /> </Grid>
                 <Grid item xs={9} sm={10} md={10} lg={10} xl={10} key={tweets.tweet_id}> 
-                    { 
-                        tampil && <Box className={classes.action} boxShadow={3}zIndex="tooltip"
-                    >
-                        <List>
-                            <ListItem button className={classes.actiontext}>
-                                <ListItemText onClick={() => setUpdateTweet(tweets)} >Edit</ListItemText>
-                            </ListItem>
-                            <ListItem button className={classes.actiontext}>
-                                <ListItemText onClick={() => deleteButton(tweets.tweet_id)} >Delete</ListItemText>
-                            </ListItem>
-                        </List>
-                    </Box>
-                    }
+                    
                     
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
                         {({ TransitionProps }) => (

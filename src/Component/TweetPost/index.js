@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import {Box, Divider, Button} from '@material-ui/core';
+import {Box, Divider, Button, Modal, Backdrop, Fade} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { BorderColor } from "@material-ui/icons";
 import CreateTweet from "./CreateTweet";
@@ -18,7 +18,8 @@ const TweetPost = ({setAuth}) => {
         },
         content:{
             // marginLeft:20
-        }
+        },
+        
     })
 
     const classes = useStyles();
@@ -102,6 +103,7 @@ const TweetPost = ({setAuth}) => {
         setCurrentState({tweet_id: tweet.tweet_id, tweets: tweet.tweets, tweets_time: tweet.tweets_time, tweet_name: tweet.tweet_name, tweet_email: tweet.tweet_email})
         
         setModalUpdate(!modalUpdate)
+        
         console.log('selected tweet',currentState)
 
         try {
@@ -151,7 +153,6 @@ const TweetPost = ({setAuth}) => {
             console.log(err.message)
         }
     }
-
   
     return(
         <Box borderRight={1} border className={classes.root} borderLeft={1}>
@@ -160,8 +161,9 @@ const TweetPost = ({setAuth}) => {
                 <CreateTweet postTweet={postTweet} dataUser={dataUser}  />
                 <TweetList tweet={tweetList} deleteTweet={deleteTweet} updateTweet={updateTweet} closeModal={closeModal} />
                 {
-                    modalUpdate && <ModalUpdateTweet closeModal={closeModal} updateTweet={updateTweet} currentState={currentState} postUpdateTweet={postUpdateTweet} />
+                    modalUpdate && <ModalUpdateTweet modalUpdate={modalUpdate} closeModal={closeModal} updateTweet={updateTweet} currentState={currentState} postUpdateTweet={postUpdateTweet} modalUpdate={modalUpdate} />
                 }
+                
             </Box>
         </Box>
     )
