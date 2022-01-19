@@ -13,10 +13,11 @@ const TweetPost = ({setAuth}) => {
         root:{
           height:'100vw',
           borderColor:'#e6ecf0',
-          marginLeft:20
+          padding:10
+        //   marginLeft:20
         },
         content:{
-            marginLeft:20
+            // marginLeft:20
         }
     })
 

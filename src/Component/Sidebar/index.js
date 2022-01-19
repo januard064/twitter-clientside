@@ -95,8 +95,11 @@ const Sidebar = ({setAuth, logout}) => {
                     </ListItemIcon>
                    <ListItemText className={classes.text}>More</ListItemText>
                 </ListItem>
-                <ListItem button className={classes.hover}>
-                    <Button onClick={(e) => logout(e)}><ExitToAppIcon />Logout</Button>
+                <ListItem button className={classes.hover} onClick={(e) => logout(e)}>
+                    <ListItemIcon>
+                        <ExitToAppIcon className={classes.icon} />
+                    </ListItemIcon>
+                    <ListItemText className={classes.text}>Logout</ListItemText>
                 </ListItem>
             </List>
         </Box>

@@ -19,8 +19,9 @@ const CreateTweet = ({postTweet, dataUser} ) => {
             marginBottom:20
         },
         profile:{
-            width:60,
-            height:60
+            width:40,
+            height:40,
+            textAlign:'center'
         },
         warning:{
             color:'#1da1f2',
@@ -33,15 +34,22 @@ const CreateTweet = ({postTweet, dataUser} ) => {
             flex:1
         },
         tweetdetails:{
-            marginTop:10,
-            widthwidth:'100%'
+            marginBottom:10,
+            borderColor:'#e6ecf0'
         },
         button:{
             width:5
         },
+        buttonGroup:{
+            width:'100%'
+        },
         icon:{
             color:'#1da1f2',
-            fontSize:25,
+            fontSize:20,
+            cursor:'pointer',
+            "&:hover":{
+                backgroundColor: '#e1eef6',
+            }
         },
         tweetsubmit:{
             color:'white !important',
@@ -53,13 +61,16 @@ const CreateTweet = ({postTweet, dataUser} ) => {
         tweetsubmitbutton:{
             color:'white',
             textTransform:'capitalize',
-            backgroundColor:'#1da1f2',
+            backgroundColor:'#1d9bf0',
+            "&:hover":{
+                backgroundColor:"#1a8cd8"
+            },
             borderRadius:50,
             fontWeight:'bold',
             cursor:'pointer',
             border: 'none',
             height:30,
-            
+            float:'right'
         },
         tweetsubmitbuttondisabled:{
             color:'white !important',
@@ -67,8 +78,10 @@ const CreateTweet = ({postTweet, dataUser} ) => {
             textTransform:'capitalize',
             backgroundColor:'#8ecdf8',
             cursor:'pointer',
+            border: 'none',
             borderRadius:50,
             height:30,
+            float:'right'
         }
     })
 
@@ -103,43 +116,41 @@ const CreateTweet = ({postTweet, dataUser} ) => {
     }
 
     return(
-        // <div className={classes.root}>
         <Box borderBottom={1} className={classes.root}>
         <Grid container className={classes.content} >
-           <Grid item xs={2} sm={2} md={2} lg={2} xl={2} > <Avatar alt="image profile" src="/assets/images/profile.jpg" className={classes.profile} /> </Grid>
-           <Grid item xs={8} sm={8} md={8} lg={8} xl={8} >
+           <Grid item xs={2} sm={1} md={1} lg={1} xl={1} > <Avatar alt="image profile" src="/assets/images/profile.jpg" className={classes.profile} /> </Grid>
+           <Grid item xs={9} sm={10} md={10} lg={10} xl={10} >
                  <form onSubmit={onSubmit} >   
+                 <Box borderBottom={1} className={classes.tweetdetails}>     
                     <TextareaAutosize  name="tweets" className={classes.tweet} minRows={2} placeholder="What's Happening" onChange={handleInputChange} maxLength={240} value={tweet.tweets} />
                     {
                         warning && <p className={classes.warning}>{240-warning.length} Character Left</p>
                     }
-                            <div className={classes.tweetdetails}>
-                                <Box display="flex"  >
-                                    <Box flexGrow={1}>
-                                        <ButtonGroup variant="none" >
-                                                <Button className={classes.button} ><ImageOutlinedIcon className={classes.icon} /></Button>
-                                                <Button className={classes.button}><GifIcon className={classes.icon} /></Button>
-                                                <Button className={classes.button}><EqualizerIcon className={classes.icon} /></Button>
-                                                <Button className={classes.button}><SentimentSatisfiedIcon className={classes.icon} /></Button>
-                                                <Button className={classes.button}><EventIcon className={classes.icon} /></Button>
-                                        </ButtonGroup>
-                                    </Box>
-                                    <Box className={classes.tweetsubmit}>
-                                        {
-                                            warning === '' ? (
-                                               <div><button disabled  className={classes.tweetsubmitbuttondisabled}>Tweet</button> </div>
-                                            ) :  <div><button onClick={onSubmit} className={classes.tweetsubmitbutton}>Tweet</button> </div>
-                                        }
-                                    </Box>
-                                </Box>
-                            </div>
+                   </Box> 
+                    <Grid container>    
+                        <Grid item xs={8} sm={8} md={8} lg={8} xl={8}>
+                            <Grid container  >
+                                <Grid item xs={2} sm={2} md={2} lg={2} xl={2}> <div className={classes}><ImageOutlinedIcon className={classes.icon}/></div></Grid>
+                                <Grid item xs={2} sm={2} md={2} lg={2} xl={2} > <div className={classes}><GifIcon className={classes.icon}/></div></Grid>
+                                <Grid item xs={2} sm={2} md={2} lg={2} xl={2} > <div className={classes}><EqualizerIcon className={classes.icon}/></div></Grid>
+                                <Grid item xs={2} sm={2} md={2} lg={2} xl={2} ><div className={classes}><SentimentSatisfiedIcon className={classes.icon}/></div></Grid>
+                                <Grid item xs={2} sm={2} md={2} lg={2} xl={2} ><div className={classes}><EventIcon className={classes.icon}/></div></Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4} justifyContent="flex-end">
+                                {
+                                    warning === '' ? (
+                                        <div><button disabled  className={classes.tweetsubmitbuttondisabled}>Tweet</button> </div>
+                                    ) :  <div><button onClick={onSubmit} className={classes.tweetsubmitbutton}>Tweet</button> </div>
+                                }
+                        </Grid>
+                    </Grid>
+                      
                 </form>
-                {/* <div><button onClick={onSubmit} className={classes.tweetsubmitbutton}>Tweet</button> </div> */}
             </Grid>
         </Grid>
        
         </Box>
-        // </div>
     )
 }
 
